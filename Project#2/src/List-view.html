@@ -1,0 +1,86 @@
+﻿<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<script src = '//code.jquery.com/jquery.min.js'></script>
+
+<dom-module id="List-view">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+    </style>
+    fsdgfrdefwrfe
+    <section id = 'container' style = "width: 500px; height : 500px;"></section>
+
+    <!-- <div class="card">
+      <div class="circle">1</div>
+      <h1>1</h1>
+      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+    </div>
+
+    <div class="card">
+        <div class="circle" >2</div>
+        <h1>List Two</h1>
+        <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+        <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+    </div>
+
+    <div class="card">
+        <div class="circle">3</div>
+        <h1>List Three</h1>
+        <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
+        <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+    </div> -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'List-view',
+    });
+
+    $('document').ready(function(){
+      console.log("THAAD NO1");
+
+      // $.ajax({
+      //   url: 'https://das.urid.kr/json',
+      //   method: 'get',
+      //   crossDomain : false,
+      //   success : function (res) {
+      //     console.log(res);
+      //   }
+      // })
+
+      setTimeout(function(){
+        $.get('https://das.urid.kr/json', function(res){
+          console.log(res)
+          console.log(this.$['container']);
+          console.log(Polymer.dom(this.root).querySelector('#container'));
+          for(var i=0;i<res.length;i++){
+            var content = '';
+            content += '<div class = "card">';
+            content += '<div class = "circle">' + i + '</div>';
+            content += '<h1>List ' + i + '</h1>';
+            content += '<p>' + res[i].value + '</p>';
+            content += '</div>';
+            console.log(content);
+            console.log($('section#container'));
+            Polymer.dom(root).appendChild(content)
+          }
+        })
+      }, 1)
+    })
+  </script>
+</dom-module>
