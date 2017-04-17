@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
     </style>
-    fsdgfrdefwrfe
+
     <section id = 'container' style = "width: 500px; height : 500px;"></section>
 
     <!-- <div class="card">
@@ -48,11 +48,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     Polymer({
+
       is: 'List-view',
+
+
     });
 
     $('document').ready(function(){
-      console.log("THAAD NO1");
+
+      $.get('https://das.urid.kr/json', function(res){
+        for(var i=0;i<res.length;i++){
+          var content = Polymer.dom(this.root).querySelector('#container');
+
+          // this.$$('section#container');
+
+          var card = document.createElement('div');
+          var card_class = document.createElement('div');
+          var card_title = document.createElement('h1');
+          var card_content = document.createElement('p');
+          var cont_value = document.createElement('p');
+          card.setAttribute("class", "card");
+          card_class.setAttribute("class", "circle");
+
+          card.appendChild(card_class);
+          card_class.appendChild(card_title);
+          card_title.appendChild(card_content);
+          card_content.appendChild(document.createTextNode(res[i].value));
+
+          // content.appendChild(card);
+
+          console.log(this.root);
+          console.log(Polymer.dom(this.root));
+
+          // console.log(card);
+
+          // content += '<div class = "card">';
+          // content += '<div class = "circle">' + i + '</div>';
+          // content += '<h1>List ' + i + '</h1>';
+          // content += '<p>' + res[i].value + '</p>';
+          // content += '</div>';
+          // Polymer.dom(this.root).appendChild(document.createTextNode(content))
+        }
+
+      })
 
       // $.ajax({
       //   url: 'https://das.urid.kr/json',
@@ -63,24 +101,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       //   }
       // })
 
-      setTimeout(function(){
-        $.get('https://das.urid.kr/json', function(res){
-          console.log(res)
-          console.log(this.$['container']);
-          console.log(Polymer.dom(this.root).querySelector('#container'));
-          for(var i=0;i<res.length;i++){
-            var content = '';
-            content += '<div class = "card">';
-            content += '<div class = "circle">' + i + '</div>';
-            content += '<h1>List ' + i + '</h1>';
-            content += '<p>' + res[i].value + '</p>';
-            content += '</div>';
-            console.log(content);
-            console.log($('section#container'));
-            Polymer.dom(root).appendChild(content)
-          }
-        })
-      }, 1)
     })
+
+
+
   </script>
 </dom-module>
