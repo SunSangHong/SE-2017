@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/medium-editor-element/medium-editor-element.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../paper-styles/color.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="Add-view">
@@ -63,19 +63,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
 
-
+    <section id = 'container' style="width = 100%; height = 100%;"></section>
     <div class="card">
         <h1>Add</h1>
         <medium-editor id="noteEditor"></medium-editor>
-        <paper-button disabled class="disabled">Submit</paper-button>       <!-- 아무 것도 쓰여있지 않을 때에는 disabled-->
-        <paper-button raised class="indigo">Refresh</paper-button>          <!-- 클릭 하면 Refresh-->
+        <paper-button disabled class="disabled">Submit</paper-button>
+        <paper-button raised class="indigo">Refresh</paper-button>
     </div>
-    
+
   </template>
 
   <script>
     Polymer({
       is: 'Add-view',
+
+      // ready : function(){
+      //   var self = this;
+      //
+      //   var container = Polymer.dom(self.root).querySelector('#container');
+      //
+      //   var card = document.createElement('div');
+      //   var card_title = document.createElement('h1');
+      //   var card_note = document.createElement('medium-editor');
+      //   var card_button_1 = document.createElement('paper-button');
+      //   var card_button_2 = document.createElement('paper-button');
+      //
+      //   card_note.setAttribute("id", "noteEditor");
+      //   card_button_1.setAttribute("class", "disabled");
+      //   card_button_1.setAttribute("disabled", true);
+      //   card_button_2.setAttribute("class", "indigo");
+      //   card_button_2.setAttribute("raised", true);
+      //
+      //   card.appendChild(card_title);
+      //   card_title.appendChild(document.createTextNode('Add'));
+      //   card.appendChild(card_note);
+      //   card.appendChild(card_button_1);
+      //   card_button_1.appendChild(document.createTextNode('Submit'));
+      //   card.appendChild(card_button_2);
+      //   card_button_2.appendChild(document.createTextNode('Refresh'));
+      //
+      //   container.appendChild(card);
+      //   console.log(container);
+      // }
     });
+
   </script>
 </dom-module>
