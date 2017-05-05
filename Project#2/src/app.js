@@ -13,58 +13,35 @@ app.use(bodyparser.urlencoded({extended : true}))
 
 
 app.post('/insert', function(req, res){
-  console.log(req);
   console.log(req.body)
-  res.send("ASDSA");
-  // console.log(req.body.note)
-  // db.serialize(function(){
-  //   var stmt = db.prepare("INSERT INTO note VALUES (?)")
-  //   stmt.run(req.body.note)
-  //
-  //   stmt.finalize();
-  //
-  //   res.send(req.body.note)
-  //
-  // })
+  res.header('Access-Control-Allow-Origin', '*');
+
+  db.serialize(function(){
+    db.run("INSERT INTO note ('priority', 'title', 'data', 'due_date', 'date') VALUES (?,?,?,?,?)", req.body.priority, req.body.title, req.body.data, req.body.due_date, req.body.date);
+
+    res.status(201).end();
+
+  })
 
 })
 
 app.get('/data', function(req, res){
 
   var tmp_arr = []
-
+  res.header('Access-Control-Allow-Origin', '*');
+  
   db.serialize(function(){
 
     db.each('SELECT * FROM note', function(err, row) {
-      console.log(row)
       tmp_arr.push(row);
-      console.log(tmp_arr);
-    })
-    setTimeout(function () {
+    }, function () {
       res.json({
         'note' : tmp_arr
       }).end();
-    });
+    })
   })
 
 })
-
-// app.get('/insert', function(req, res){
-//   db.serialize(function(){
-//
-//     var stmt = db.prepare("INSERT INTO note VALUES (?)")
-//
-//     for(var i=1;i<=10;i++){
-//       stmt.run('Note' + i);
-//     }
-//
-//     stmt.finalize();
-//
-//     res.send('Inserted!')
-//
-//   })
-//
-// })
 
 app.get('/reset', function(req, res){
   db.serialize(function(){
